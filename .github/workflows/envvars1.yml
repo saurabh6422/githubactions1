@@ -1,4 +1,4 @@
-name: Env Variables Demo1
+name: Env Variables Demo
 
 on: workflow_dispatch
 
@@ -15,9 +15,17 @@ jobs:
       - name: Use environment variables
         env:
           API_URL: ${{ vars.API_URL }}
-          APP_MODE: ${{ vars.APP_MODE }}
-          DB_PASS: ${{ secrets.DB_PASSWORD}}
+          DB_PASS: ${{ secrets.DB_PASSWORD }}
         run: |
-          echo "API URL: $API_URL"
-          echo "App Mode: $APP_MODE"
-          echo "DB PASS: $DB_PASS"
+          echo "Deploying to $API_URL"
+          echo "DB password length: ${#DB_PASSWORD}"
+          echo "DB password is ${DB_PASSWORD}"
+
+      - name: Write secret to file
+        run: |
+          echo "$DB_PASSWORD" > secret.txt
+        env:
+          DB_PASS: ${{ secrets.DB_PASSWORD }}
+
+      - name: Print file
+        run: cat secret.txt
