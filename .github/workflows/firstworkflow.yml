@@ -41,4 +41,13 @@ jobs:
         run: |
           echo "Running Unit Test"
 
+  notify:
+    name: Notification Job
+    runs-on: ubuntu-latest
+    needs: [build, test]
+    if: always()
+    steps:
+      - name: Send Notification
+        run: |
+          echo "Notification Sent"
 
