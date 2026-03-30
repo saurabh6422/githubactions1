@@ -17,6 +17,7 @@ jobs:
         with:
           distribution: 'temurin' 
           java-version: '17'
+          cache: 'maven'
 
       - name: Build with maven
         run: mvn clean package
@@ -29,4 +30,3 @@ jobs:
         with:
           name: java-demo-artifact
           path: target/*.jar
-          
