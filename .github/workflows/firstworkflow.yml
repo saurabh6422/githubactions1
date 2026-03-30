@@ -1,7 +1,5 @@
 name: Explore GitHub Components
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
